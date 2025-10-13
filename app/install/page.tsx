@@ -16,7 +16,7 @@ export default function InstallPage() {
         <div className="text-center space-y-2">
           <h1 className="text-xl font-bold text-gray-900">자장기업 샘플북 앱을</h1>
           <p className="text-xl font-bold text-gray-900">
-            <span className="text-lime-600">"홈 화면에 추가"</span>하세요!!
+            <span className="text-lime-600">"홈 화면에 추가"</span>하세요
           </p>
         </div>
 

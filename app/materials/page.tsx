@@ -246,7 +246,7 @@ function MaterialsPageContent() {
   }
 
   return (
-    <main className="min-h-screen bg-white pb-5">
+    <main className="min-h-screen bg-white pb-15">
       <div className="container mx-auto px-4 py-12 md:py-10">
         {/* Header */}
         <div className="flex items-center justify-between mt-3 mb-6 md:mt-10 md:mb-8">
@@ -345,7 +345,7 @@ function MaterialsPageContent() {
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
+      <div className="fixed bottom-3 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
   <div className="flex justify-center">
     <div className="inline-flex items-center gap-3 md:gap-4 rounded-full px-2 py-1">
       <Link href="/" className="flex flex-col items-center gap-1 group">

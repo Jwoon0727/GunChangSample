@@ -32,7 +32,7 @@ export default function QuotePage() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-white pb-28">
+    <main className="min-h-screen bg-white pb-10">
       <div className="container mx-auto px-4 py-6 md:py-8 max-w-md">
         <div className="flex items-center justify-center mb-8 mt-8">
           <Image
@@ -48,7 +48,7 @@ export default function QuotePage() {
           <Image
             src="/icons/text.png"
             alt="손끝에 느껴지는 감각, 공간 디자인을 완성하다."
-            width={400}
+            width={270}
             height={80}
             className="object-contain mx-auto"
           />
@@ -72,7 +72,7 @@ export default function QuotePage() {
           </div>
         </div>
 
-        <div className="bg-gray-50 rounded-2xl p-6 mb-6 space-y-2">
+        <div className=" rounded-2xl p-6 mb-6 space-y-2">
           <div className="flex items-start gap-2">
             <span className="text-gray-900 font-medium min-w-[20px]">A</span>
             <div>
@@ -107,7 +107,7 @@ export default function QuotePage() {
           </button>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
+      <div className="fixed bottom-3 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
   <div className="flex justify-center">
     <div className="inline-flex items-center gap-3 md:gap-4 rounded-full px-2 py-1">
       <Link href="/" className="flex flex-col items-center gap-1 group">

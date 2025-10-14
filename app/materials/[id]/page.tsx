@@ -115,6 +115,15 @@ const materials = [
   },
 ]
 
+// 카테고리별 이니셜 색상 매핑
+const categoryInitialColors: Record<string, string> = {
+  Wood: '#C59A6D',
+  Stone: '#AFAFAF',
+  Leather: '#7B6458',
+  Metal: '#D3D3D3',
+  Fantasy: '#9099A3',
+}
+
 export default function MaterialDetailPage() {
   const params = useParams()
   const router = useRouter()
@@ -203,10 +212,10 @@ export default function MaterialDetailPage() {
 
         {/* Center content */}
         <div className="flex-1 flex flex-col items-center justify-start text-center px-4 pt-20">
-          <h1 className="text-6xl md:text-8xl font-bold drop-shadow-2xl mb-4 font-serif" style={{ color: '#D8BFB0' }}>
+          <h1 className="text-6xl md:text-8xl font-bold drop-shadow-2xl mb-4 font-serif" style={{ color: categoryInitialColors[material.category] ?? '#D8BFB0' }}>
             {material.initial}
           </h1>
-          <p className="text-xl md:text-2xl drop-shadow-lg font-medium" style={{ color: '#D8BFB0' }}>{material.name}</p>
+          <p className="text-xl md:text-2xl drop-shadow-lg font-medium" style={{ color: categoryInitialColors[material.category] ?? '#D8BFB0' }}>{material.name}</p>
         </div>
       </div>
     </main>

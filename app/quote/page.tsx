@@ -107,64 +107,59 @@ export default function QuotePage() {
           </button>
         </div>
       </div>
-
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-4 z-50">
-        <div className="flex justify-center">
-          <div className="inline-flex items-center gap-4 md:gap-4  rounded-full px-4 py-4">
-          <Link href="/" className="flex flex-col items-center gap-2 group">
-          <Image
-  src={pathname === "/" ? "/icons/main1-1-active.svg" : "/icons/main1-1.svg"}
-  alt="MFB소개"
-  width={250}
-  height={250}
-  className="transition-all duration-300 ease-in-out scale-110 md:scale-100"
-  priority
-/>
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
+  <div className="flex justify-center">
+    <div className="inline-flex items-center gap-3 md:gap-4 rounded-full px-2 py-1">
+      <Link href="/" className="flex flex-col items-center gap-1 group">
+        <Image
+          src={pathname === "/" ? "/icons/main1-1-active.svg" : "/icons/main1-1.svg"}
+          alt="MFB소개"
+          width={250}
+          height={250}
+          className="transition-all duration-300 ease-in-out md:scale-100"
+          priority
+        />
         <span
           className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
             pathname === "/" ? "text-lime-600" : "text-gray-600"
           }`}
-        >
-        </span>
-      </Link>
-      <Link href="/materials" className="flex flex-col items-center gap-2 group">
-      <Image
-  src={pathname === "/materials" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
-  alt="3D MFB"
-  width={250}
-  height={250}
-  className="transition-all duration-300 ease-in-out scale-110 md:scale-100"
-  priority
-/>
-      <span
-  className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-    pathname === "/materials" ? "text-lime-600" : "text-gray-600"
-  }`}
->
-
-</span>
+        />
       </Link>
 
-      <Link href="/quote" className="flex flex-col items-center gap-2 group">
-      <Image
-  src={pathname === "/quote" ? "/icons/main3-3-active.svg" : "/icons/main3-3.svg"}
-  alt="건창기업"
-  width={250}
-  height={250}
-  className="transition-all duration-300 ease-in-out scale-110 md:scale-100"
-  priority
-/>
-      <span
-  className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-    pathname === "/quote" ? "text-lime-600" : "text-gray-600"
-  }`}
->
-
-</span>
+      <Link href="/materials" className="flex flex-col items-center gap-1 group">
+        <Image
+          src={pathname === "/materials" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
+          alt="3D MFB"
+          width={250}
+          height={250}
+          className="transition-all duration-300 ease-in-out md:scale-100"
+          priority
+        />
+        <span
+          className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
+            pathname === "/materials" ? "text-lime-600" : "text-gray-600"
+          }`}
+        />
       </Link>
-          </div>
-        </div>
-      </div>
+
+      <Link href="/quote" className="flex flex-col items-center gap-1 group">
+        <Image
+          src={pathname === "/quote" ? "/icons/main3-3-active.svg" : "/icons/main3-3.svg"}
+          alt="건창기업"
+          width={250}
+          height={250}
+          className="transition-all duration-300 ease-in-out md:scale-100"
+          priority
+        />
+        <span
+          className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
+            pathname === "/quote" ? "text-lime-600" : "text-gray-600"
+          }`}
+        />
+      </Link>
+    </div>
+  </div>
+</div>
     </main>
   )
 }

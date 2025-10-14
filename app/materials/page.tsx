@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect, Suspense, useRef } from "react"
-import { Home, ChevronLeft, ChevronRight, Layers, Grid3x3, Infinity } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
@@ -116,6 +115,14 @@ const materials = [
     initial: "PM",
   },
 ]
+// MaterialsPageContent() 내부 최상단 근처에 추가
+const categoryInitialColors: Record<string, string> = {
+  Wood: '#C59A6D',
+  Stone: '#AFAFAF',
+  Leather: '#7B6458 ',
+  Metal: '#D3D3D3 ',
+  Fantasy: '#9099A3',
+}
 
 function MaterialsPageContent() {
   const pathname = usePathname()
@@ -218,15 +225,7 @@ function MaterialsPageContent() {
     }
   }
 
-  const nextSlide = () => {
-    const newIndex = (currentIndex + 1) % filteredMaterials.length
-    scrollToCard(newIndex)
-  }
-
-  const prevSlide = () => {
-    const newIndex = (currentIndex - 1 + filteredMaterials.length) % filteredMaterials.length
-    scrollToCard(newIndex)
-  }
+  // navigation arrow handlers removed along with buttons
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category)
@@ -247,8 +246,8 @@ function MaterialsPageContent() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 pb-28">
-      <div className="container mx-auto px-4 py-12 md:py-16">
+    <main className="min-h-screen bg-white pb-5">
+      <div className="container mx-auto px-4 py-12 md:py-10">
         {/* Header */}
         <div className="flex items-center justify-between mt-3 mb-6 md:mt-10 md:mb-8">
           <Image
@@ -305,7 +304,7 @@ function MaterialsPageContent() {
                     scroll={false}
                     onClick={() => handleMaterialClick(material.id)}
                   >
-                    <div className={`bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer w-[290px] transition-all duration-300 ${
+                                      <div className={`bg-white rounded-lg overflow-hidden cursor-pointer w-[290px] transition-all duration-600 ${
                       index === currentIndex 
                         ? 'scale-100 opacity-100' 
                         : index === currentIndex + 1 
@@ -313,13 +312,13 @@ function MaterialsPageContent() {
                         : index === currentIndex - 1
                           ? 'scale-95 opacity-80' // 이전 카드도 동일한 효과
                           : 'scale-0 opacity-0'
-                    }`}>
-                      <div className="aspect-[3/5] relative w-full h-full">
+                    }`} style={{ boxShadow: '10px 12px 24px rgba(0,0,0,0.16)' }}>
+                      <div className="aspect-[3/5.5] relative w-full h-full">
                         <Image
                           src={material.image}
                           alt={material.name}
                           width={290}
-                          height={387}
+                          height={400}
                           className="w-full h-full object-cover"
                           priority={index < 3}
                           loading={index < 3 ? "eager" : "lazy"}
@@ -328,7 +327,7 @@ function MaterialsPageContent() {
                           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                         />
                         <div className="absolute bottom-6 left-6">
-                          <span className="text-4xl md:text-5xl font-bold drop-shadow-lg font-serif" style={{ color: '#D8BFB0' }}>
+                          <span className="text-5xl md:text-6xl font-bold drop-shadow-lg font-serif leading-none opacity-100" style={{ color: categoryInitialColors[material.category] ?? '#D8BFB0' }}>
                             {material.initial}
                           </span>
                         </div>
@@ -340,91 +339,65 @@ function MaterialsPageContent() {
             </div>
           </div>
 
-          {/* Navigation Arrows - Optional */}
-          {filteredMaterials.length > 1 && (
-            <>
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10"
-                aria-label="Previous material"
-              >
-                <ChevronLeft className="w-6 h-6 text-gray-700" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors z-10"
-                aria-label="Next material"
-              >
-                <ChevronRight className="w-6 h-6 text-gray-700" />
-              </button>
-            </>
-          )}
 
-          {/* Dots Indicator */}
-          {filteredMaterials.length > 1 && (
-            <div className="flex justify-center gap-2 mt-6">
-              {filteredMaterials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => scrollToCard(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentIndex ? "bg-lime-500 w-6" : "bg-gray-300"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          )}
+
+       
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-4 z-50">
-        <div className="flex justify-center">
-          <div className="inline-flex items-center gap-4 md:gap-4 rounded-full px-4 py-4">
-            <Link href="/" className="flex flex-col items-center gap-2 group">
-              <Image
-                src={pathname === "/" ? "/icons/main1-1-active.svg" : "/icons/main1-1.svg"}
-                alt="MFB소개"
-                width={250}
-                height={250}
-                className="transition-all duration-300 ease-in-out scale-110 md:scale-100"
-                priority
-              />
-              <span className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-                pathname === "/" ? "text-lime-600" : "text-gray-600"
-              }`}></span>
-            </Link>
-            
-            <Link href="/materials" className="flex flex-col items-center gap-2 group">
-              <Image
-                src={pathname === "/materials" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
-                alt="3D MFB"
-                width={250}
-                height={250}
-                className="transition-all duration-300 ease-in-out scale-110 md:scale-100"
-                priority
-              />
-              <span className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-                pathname === "/materials" ? "text-lime-600" : "text-gray-600"
-              }`}></span>
-            </Link>
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
+  <div className="flex justify-center">
+    <div className="inline-flex items-center gap-3 md:gap-4 rounded-full px-2 py-1">
+      <Link href="/" className="flex flex-col items-center gap-1 group">
+        <Image
+          src={pathname === "/" ? "/icons/main1-1-active.svg" : "/icons/main1-1.svg"}
+          alt="MFB소개"
+          width={250}
+          height={250}
+          className="transition-all duration-300 ease-in-out md:scale-100"
+          priority
+        />
+        <span
+          className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
+            pathname === "/" ? "text-lime-600" : "text-gray-600"
+          }`}
+        />
+      </Link>
 
-            <Link href="/quote" className="flex flex-col items-center gap-2 group">
-              <Image
-                src={pathname === "/quote" ? "/icons/main3-3-active.svg" : "/icons/main3-3.svg"}
-                alt="건창기업"
-                width={250}
-                height={250}
-                className="transition-all duration-300 ease-in-out scale-110 md:scale-100"
-                priority
-              />
-              <span className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-                pathname === "/quote" ? "text-lime-600" : "text-gray-600"
-              }`}></span>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <Link href="/materials" className="flex flex-col items-center gap-1 group">
+        <Image
+          src={pathname === "/materials" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
+          alt="3D MFB"
+          width={250}
+          height={250}
+          className="transition-all duration-300 ease-in-out md:scale-100"
+          priority
+        />
+        <span
+          className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
+            pathname === "/materials" ? "text-lime-600" : "text-gray-600"
+          }`}
+        />
+      </Link>
+
+      <Link href="/quote" className="flex flex-col items-center gap-1 group">
+        <Image
+          src={pathname === "/quote" ? "/icons/main3-3-active.svg" : "/icons/main3-3.svg"}
+          alt="건창기업"
+          width={250}
+          height={250}
+          className="transition-all duration-300 ease-in-out md:scale-100"
+          priority
+        />
+        <span
+          className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
+            pathname === "/quote" ? "text-lime-600" : "text-gray-600"
+          }`}
+        />
+      </Link>
+    </div>
+  </div>
+</div>
     </main>
   )
 }

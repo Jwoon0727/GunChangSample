@@ -114,7 +114,7 @@ export default function QuotePage() {
         className=" w-[166px] h-[46px] flex items-center justify-center gap-2 text-white font-medium py-4 rounded-full transition-colors shadow-sm"
         style={{ backgroundColor: "#C5D700" }}
       >
-        <Image src="/icons/nav.png" alt="채팅하기" width={20} height={20} className="w-100 h-6 object-contain" />
+        <Image src="/icons/nav1.png" alt="채팅하기" width={20} height={20} className="w-100 h-6 object-contain" />
       </button>
       </div>
       </div>

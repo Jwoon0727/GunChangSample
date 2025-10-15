@@ -1,6 +1,6 @@
 {
-    "name": "PWA Next.js",
-    "short_name": "건창",
+    "name": "건창기업 샘플북",
+    "short_name": "건창기업 샘플북",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone",
@@ -9,7 +9,7 @@
     "start_url": "/",
     "icons": [
       {
-        "src": "icons/icon-48x48.png",
+        "src": "icons/icon0.png",
         "sizes": "48x48",
         "type": "image/png",
         "purpose": "maskable any"

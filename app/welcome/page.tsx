@@ -8,14 +8,14 @@ import Image from "next/image"
 export default function WelcomePage() {
   const router = useRouter()
 
-  // useEffect(() => {
-  //   // Check if user has already visited
-  //   const hasVisited = localStorage.getItem("hasVisitedBefore")
-  //   if (hasVisited) {
-  //     // Redirect to home if already visited
-  //     router.replace("/")
-  //   }
-  // }, [router])
+  useEffect(() => {
+    // Check if user has already visited
+    const hasVisited = localStorage.getItem("hasVisitedBefore")
+    if (hasVisited) {
+      // Redirect to home if already visited
+      router.replace("/")
+    }
+  }, [router])
 
   const handleOpenSampleBook = () => {
     // Mark as visited
@@ -45,20 +45,18 @@ export default function WelcomePage() {
             priority
           />
         </div>
-             {/* Action Buttons */}
-             <div className="w-full space-y-4 mt-auto pb-3 flex flex-col items-center">
+       {/* Action Buttons */}
+       <div className="w-full px-4 mt-auto pb-8 flex flex-col items-center space-y-4">
           <button
             onClick={handleOpenSampleBook}
-            className="bg-[#C5D700] hover:bg-[#B0C100] text-[#1a1a2e] font-semibold rounded-full transition-colors text-lg md:text-xl"
-            style={{ width: '318px', height: '50px' }}
+            className="bg-[#C5D700] hover:bg-[#B0C100] text-[#1a1a2e] font-semibold rounded-full transition-colors text-lg md:text-xl w-full max-w-[318px] h-[50px]"
           >
             모바일 샘플북 열기
           </button>
 
           <button
             onClick={handleAddToHomeScreen}
-            className="bg-transparent hover:bg-white/10 text-[#B0C100] font-semibold rounded-full border-2 border-[#B0C100] transition-colors text-lg md:text-xl"
-            style={{ width: '318px', height: '50px' }}
+            className="bg-transparent hover:bg-white/10 text-[#B0C100] font-semibold rounded-full border-2 border-[#B0C100] transition-colors text-lg md:text-xl w-full max-w-[318px] h-[50px]"
           >
             홈페이지 방문하기
           </button>

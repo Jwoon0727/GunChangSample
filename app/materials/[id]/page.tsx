@@ -117,11 +117,11 @@ const materials = [
 
 // 카테고리별 이니셜 색상 매핑
 const categoryInitialColors: Record<string, string> = {
-  Wood: '#C59A6D',
-  Stone: '#AFAFAF',
-  Leather: '#7B6458',
-  Metal: '#D3D3D3',
-  Fantasy: '#9099A3',
+  Wood: '#CFB5A5',
+  Stone: '#9F9F9F',
+  Leather: '#816558',
+  Metal: '#B8C1C8',
+  Fantasy: '#7F8E9F',
 }
 
 export default function MaterialDetailPage() {
@@ -212,10 +212,36 @@ export default function MaterialDetailPage() {
 
         {/* Center content */}
         <div className="flex-1 flex flex-col items-center justify-start text-center px-4 pt-20">
-          <h1 className="text-6xl md:text-8xl font-bold drop-shadow-2xl mb-4 font-serif" style={{ color: categoryInitialColors[material.category] ?? '#D8BFB0' }}>
+          <h1 
+            className="-mb-5" 
+            style={{ 
+              fontFamily: 'var(--font-dm-serif-text)', 
+              fontWeight: '400', 
+              fontSize: '96px',
+              color: categoryInitialColors[material.category] ?? '#D8BFB0',
+              position: 'relative',
+              textShadow: '0 1px 1px rgba(0,0,0,30)',
+              
+            }}
+          >
             {material.initial}
           </h1>
-          <p className="text-xl md:text-2xl drop-shadow-lg font-medium" style={{ color: categoryInitialColors[material.category] ?? '#D8BFB0' }}>{material.name}</p>
+
+          <p 
+            className="drop-shadow-lg font-medium" 
+            style={{ 
+              fontFamily: 'var(--font-pretendard)', 
+              fontWeight: '400', 
+              fontSize: '25px',
+              color: categoryInitialColors[material.category] ?? '#D8BFB0',
+              position: 'relative',
+              display: 'inline-block',
+              textShadow: '0 1px 1px rgba(0,0,0,30)',
+              
+            }}
+          >
+            {material.name}
+          </p>
         </div>
       </div>
     </main>

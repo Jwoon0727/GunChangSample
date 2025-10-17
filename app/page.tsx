@@ -1,203 +1,370 @@
+
+
+
 "use client"
 
-import { Leaf, TrendingUp, Shield, Layers, Grid3x3, Infinity } from "lucide-react"
+import { useState, useEffect, Suspense, useRef } from "react"
 import Link from "next/link"
-import { useEffect, useState } from "react"
-import { useRouter, usePathname } from "next/navigation"
 import Image from "next/image";
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { loadImagesWithPriority, cleanupImageCache } from "@/lib/image-cache"
 
-export default function Home() {
-  const router = useRouter()
+
+const categories = ["Wood", "Stone", "Leather", "Metal", "Fantasy"]
+
+const materials = [
+  {
+    id: 1,
+    category: "Wood",
+    name: "LV Wood Texture",
+    image: "/icons/1-1_LV.jpg",
+    initial: "LV",
+  },
+  {
+    id: 2,
+    category: "Wood",
+    name: "Vertical",
+    image: "/icons/1-2_VT.jpg",
+    initial: "VT",
+  },
+  {
+    id: 3,
+    category: "Wood",
+    name: "Lined Wood",
+    image: "/icons/1-3_L.jpg",
+    initial: "L",
+  },
+  {
+    id: 4,
+    category: "Wood",
+    name: "Jamaican Wood",
+    image: "/icons/1-4_J.jpg",
+    initial: "J",
+  },
+  {
+    id: 5,
+    category: "Wood",
+    name: "Wood Grain",
+    image: "/icons/1-5_G.jpg",
+    initial: "G",
+  },
+  {
+    id: 6,
+    category: "Stone",
+    name: "Volcano Stone",
+    image: "/icons/2-1_VS.jpg",
+    initial: "VS",
+  },
+  {
+    id: 7,
+    category: "Stone",
+    name: "Mortar Stone",
+    image: "/icons/2-2_MT.jpg",
+    initial: "MT",
+  },
+  {
+    id: 8,
+    category: "Stone",
+    name: "Marble White",
+    image: "/icons/2-3_NS.jpg",
+    initial: "NS",
+  },
+  {
+    id: 9,
+    category: "Stone",
+    name: "Stone",
+    image: "/icons/2-4_S.jpg",
+    initial: "S",
+  },
+  {
+    id: 10,
+    category: "Leather",
+    name: "Calf Skin",
+    image: "/icons/3-1_CS.jpg",
+    initial: "CS",
+  },
+  {
+    id: 11,
+    category: "Leather",
+    name: "Togo Skin",
+    image: "/icons/3-2_TS.jpg",
+    initial: "TS",
+  },
+  {
+    id: 12,
+    category: "Metal",
+    name: "Titanium",
+    image: "/icons/4_TI.jpg",
+    initial: "TI",
+  },
+  {
+    id: 13,
+    category: "Fantasy",
+    name: "Fabric",
+    image: "/icons/5-1_F.jpg",
+    initial: "F",
+  },
+  {
+    id: 14,
+    category: "Fantasy",
+    name: "Soft Embossing",
+    image: "/icons/5-2_ST.jpg",
+    initial: "ST",
+  },
+  {
+    id: 15,
+    category: "Fantasy",
+    name: "Prime Matt",
+    image: "/icons/5-3_PM.jpg",
+    initial: "PM",
+  },
+]
+// MaterialsPageContent() 내부 최상단 근처에 추가
+const categoryInitialColors: Record<string, string> = {
+  Wood: '#CFB5A5',
+  Stone: '#9F9F9F',
+  Leather: '#816558',
+  Metal: '#B8C1C8',
+  Fantasy: '#7F8E9F',
+}
+
+function MaterialsPageContent() {
   const pathname = usePathname()
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const [selectedCategory, setSelectedCategory] = useState("Wood")
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [imagesLoaded, setImagesLoaded] = useState(false)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const isScrollingRef = useRef(false)
 
+  // URL 파라미터에서 인덱스 복원
   useEffect(() => {
-    const hasVisited = localStorage.getItem("hasVisitedBefore")
-    if (!hasVisited) {
-      router.replace("/welcome")
+    const savedIndex = searchParams.get('index')
+    const savedCategory = searchParams.get('category')
+    
+    if (savedIndex) {
+      setCurrentIndex(parseInt(savedIndex))
     }
-  }, [router])
+    if (savedCategory) {
+      setSelectedCategory(savedCategory)
+    }
+  }, [searchParams])
 
-  // 이미지 프리로딩
+  // 개선된 이미지 프리로딩 - 유틸리티 함수 사용
   useEffect(() => {
-    const imageUrls = [
-      "/icons/main1-1.svg",
-      "/icons/main1-1-active.svg",
-      "/icons/main2-2.svg",
-      "/icons/main2-2-active.svg",
-      "/icons/main3-3.svg",
-      "/icons/main3-3-active.svg"
-    ]
+    const initializeImageCaching = async () => {
+      try {
+        // 캐시 정리
+        await cleanupImageCache()
+        
+        // 우선순위 기반 이미지 로딩
+        await loadImagesWithPriority()
+        
+        setImagesLoaded(true)
+      } catch (error) {
+        console.warn('Image caching initialization failed:', error)
+        setImagesLoaded(true) // 에러가 발생해도 로드 상태로 변경
+      }
+    }
 
-    // 이미지들을 미리 로드하지만 상태 변경은 하지 않음
-    imageUrls.forEach((url) => {
-      const img = new window.Image() as HTMLImageElement
-      img.src = url
-    })
-
-    // 즉시 로드 완료 상태로 설정
-    setImagesLoaded(true)
+    // 메인 스레드를 블록하지 않도록 지연 실행
+    setTimeout(initializeImageCaching, 0)
   }, [])
 
+  // 스크롤 위치를 현재 인덱스에 맞춰 조정
+  useEffect(() => {
+    if (scrollContainerRef.current && !isScrollingRef.current) {
+      const container = scrollContainerRef.current
+      const cardWidth = 290 + 16
+      const targetScroll = currentIndex * cardWidth
+      
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'auto' // smooth 대신 auto로 즉시 이동
+      })
+    }
+  }, [currentIndex])
+
+  const filteredMaterials = materials.filter((m) => m.category === selectedCategory)
+
+  // 스크롤 이벤트 핸들러 - 한 번에 하나의 카드만 스크롤
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (isScrollingRef.current) return
+    
+    const container = e.currentTarget
+    const cardWidth = 290 + 16
+    const scrollLeft = container.scrollLeft
+    const newIndex = Math.round(scrollLeft / cardWidth)
+    
+    // 인덱스가 변경되었을 때만 업데이트
+    if (newIndex !== currentIndex && newIndex >= 0 && newIndex < filteredMaterials.length) {
+      isScrollingRef.current = true
+      setCurrentIndex(newIndex)
+      updateURL(selectedCategory, newIndex)
+      
+      // 스크롤 완료 후 플래그 리셋
+      setTimeout(() => {
+        isScrollingRef.current = false
+      }, 300)
+    }
+  }
+
+  // 수동 카드 이동 함수들
+  const scrollToCard = (index: number) => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current
+      const cardWidth = 290 + 16
+      const targetScroll = index * cardWidth
+      
+      isScrollingRef.current = true
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      })
+      
+      setTimeout(() => {
+        isScrollingRef.current = false
+      }, 300)
+    }
+  }
+
+  // navigation arrow handlers removed along with buttons
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category)
+    setCurrentIndex(0)
+    updateURL(category, 0)
+  }
+
+  const updateURL = (category: string, index: number) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('category', category)
+    params.set('index', index.toString())
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+  }
+
+  const handleMaterialClick = (materialId: number) => {
+    const materialIndex = filteredMaterials.findIndex(m => m.id === materialId)
+    updateURL(selectedCategory, materialIndex)
+  }
+
   return (
-    <main className="min-h-screen bg-white pb-25">
-      {/* Header Section */}
-      <div className="container mx-auto px-4 py-8 md:py-12">
-        <div className="max-w-4xl mx-auto">
+    <main className="min-h-screen bg-white pb-15">
+      <div className="container mx-auto px-4 py-12 md:py-10">
+        {/* Header */}
+        <div className="flex items-center justify-between mt--3 mb-6 md:mt-10 md:mb-8">
           <Image
-            src="/icons/MFBPS.png"
-            alt="MFB"
-            width={160}
-            height={80}
-            className="object-contain mb-2"
+            src="/icons/MFB.png" // 이미지 경로를 입력하세요
+            alt="3D MFB"
+            width={106}
+            height={44}
+            className="object-contain"
           />
-        <br/>
-        <br/>
+        </div>
 
-          {/* Process Steps */}
-          <div className="space-y-12 md:space-y-16">
-            {/* Step 1 */}
-            <div className="flex flex-row items-start gap-6">
-            <div className="flex-shrink-0 w-full max-w-[150px] md:w-60">
-            <div className=" rounded-lg p-2 md:p-6 aspect-square flex items-center justify-center">
-                  <img
-                    src="/icons/group4.png"
-                    alt="Step 1 illustration"
-                    className="w-full h-full object-contain"
-                  />
+        {/* Category Filter Buttons */}
+        <div 
+          className="flex gap-2 mb-8 md:mb-16 overflow-x-auto pb-2 scrollbar-hide"
+          style={{
+            scrollbarWidth: 'none', // Firefox
+            msOverflowStyle: 'none', // Internet Explorer
+          }}
+        >
+{categories.map((category) => (
+  <button
+    key={category}
+    onClick={() => handleCategoryChange(category)}
+    className={`px-4 py-1 transition-all duration-300 whitespace-nowrap flex-shrink-0 rounded-lg border-2 font-medium text-[19px] tracking-[0.03em] leading-normal ${
+      selectedCategory === category
+        ? "bg-[#C5D700] text-white border-[#C5D700] shadow-md scale-105"
+        : "bg-white text-[#C5D700] border-[#C5D700]"
+    }`}
+    style={{ fontFamily: 'var(--font-pragati-narrow)' }}
+  >
+    {category}
+  </button>
+))}
+</div>
+        {/* Carousel Container */}
+        <div className="relative w-full ml-0 mr-auto mt-8">
+          {/* Material Cards - Controlled Horizontal Scroll */}
+          <div 
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
+            style={{
+              scrollbarWidth: 'none', // Firefox
+              msOverflowStyle: 'none', // Internet Explorer
+              paddingLeft: '20px', // 더 왼쪽으로
+              paddingRight: 'calc(100vw - 350px)', // 다음 카드가 더 많이 보이도록
+            }}
+          >
+            <div className="flex gap-4 justify-start" style={{ width: 'max-content' }}>
+              {filteredMaterials.map((material, index) => (
+                <div key={material.id} className="flex-shrink-0 snap-start snap-always">
+                  <Link 
+                    href={`/materials/${material.id}?category=${selectedCategory}&index=${index}`}
+                    prefetch={true}
+                    scroll={false}
+                    onClick={() => handleMaterialClick(material.id)}
+                  >
+                                      <div className={`bg-white rounded-lg overflow-hidden cursor-pointer w-[290px] transition-all duration-600 ${
+                      index === currentIndex 
+                        ? 'scale-100 opacity-100' 
+                        : index === currentIndex + 1 
+                          ? 'scale-95 opacity-80' // 다음 카드
+                        : index === currentIndex - 1
+                          ? 'scale-95 opacity-80' // 이전 카드도 동일한 효과
+                          : 'scale-0 opacity-0'
+                    }`} style={{ boxShadow: '10px 12px 24px rgba(0,0,0,0.16)' }}>
+                      <div className="aspect-[3/5.5] relative w-full h-full">
+                        <Image
+                          src={material.image}
+                          alt={material.name}
+                          width={290}
+                          height={400}
+                          className="w-full h-full object-cover"
+                          priority={index < 3}
+                          loading={index < 3 ? "eager" : "lazy"}
+                          sizes="(max-width: 768px) 256px, 320px"
+                          placeholder="blur"
+                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                        />
+                        <div className="absolute bottom-6 left-6">
+                          <span 
+                            className="leading-none opacity-100" 
+                            style={{ 
+                              fontFamily: 'var(--font-dm-serif-text)', 
+                              fontWeight: '400', 
+                              fontSize: '58px', 
+                              color: categoryInitialColors[material.category] ?? '#D8BFB0',
+                              textShadow: '0 1px 1px rgba(0,0,0,30)',
+                            }}
+                          >
+                            {material.initial}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-              </div>
-              <div className="flex-1 text-left">
-                <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3">STEP 1</h2>
-                <p className="text-gray-700 leading-relaxed">데코페이퍼를 멜라민수지에 <br/>함침 → LPM 시트 제작</p>
-              </div>
-            </div>
-
-            {/* Step 2 */}
-            <div className="flex flex-row items-start gap-6">
-            <div className="flex-shrink-0 w-full max-w-[150px] md:w-48">
-            <div className=" rounded-lg p-2 md:p-6 aspect-square flex items-center justify-center">
-                  <img
-                    src="/icons/group3.png"
-                    alt="Step 2 illustration"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-              <div className="flex-1 text-left">
-                <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3">STEP 2</h2>
-                <p className="text-gray-700 leading-relaxed">열과 압력으로 LPM 시트를 <br/>
-                보드에 접착 → MFB 생산</p>
-              </div>
-            </div>
-
-            {/* Product Cards */}
-            <div className="flex gap-3 md:gap-6">
-              {/* Product 1 */}
-              <div className="flex-1 rounded-lg p-6 flex flex-col items-center text-center">
-                <div className="w-[130px] h-[90px] md:w-[200px] md:h-[150px] bg-lime-400 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                  <img
-                    src="/icons/group1.png"
-                    alt="3D MFB Eco-friendly"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-        
-                <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                일반 프레스 압착 
-                <br/>→ 매끈한 표면
-                </p>
-              </div>
-
-              {/* Product 2 */}
-              <div className="flex-1 rounded-lg p-6 flex flex-col items-center text-center">
-                <div className="w-[130px] h-[90px] md:w-[220px] md:h-[150px] bg-lime-400 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                  <img
-                    src="/icons/group2.png"
-                    alt="3D MFB Premium"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-         
-                <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                경면 프레스 압착 
-                <br/>→ 질감 있는 표면
-                </p>
-              </div>
+              ))}
             </div>
           </div>
-<br/>
-<br/>
-          <div className="container mx-auto px-4">
-  <div className="max-w-4xl mx-auto">
-    <div className="flex justify-start">
-      <Image
-        src="/icons/MFBAD.png"
-        alt="ADVANTAGES"
-        width={130}
-        height={80}
-        className="object-contain mb-0"
-      />
-    </div>
-  </div>
-</div>
-<br/>
 
-       {/* Features Section */}
-<div className="  border-gray-200">
-  <div className="flex flex-col items-center text-center">
-    {/* Single Image */}
-    <div className="w-94 h-44 md:w-152 md:h-82 rounded-full flex items-center justify-center mb-0">
-  <img
-    src="/icons/group7.png"
-    alt="Features illustration"
-    className="w-full h-full object-contain"
-  />
-</div>
 
- {/* Feature Texts */}
- <div className="flex justify-center gap-2 md:gap-4 px-2">
- <div className="flex flex-col items-center text-center w-[108px]">
-    <h3 className="text-sm md:text-base font-bold mb-1 md:mb-2">Eco-friendly</h3>
-    <div className="space-y-0.5">
-      <p className="text-[11px] md:text-xs text-gray-600">접착제 없이</p>
-      <p className="text-[11px] md:text-xs text-gray-600">제작한</p>
-      <p className="text-[11px] md:text-xs text-gray-600">친환경성</p>
-    </div>
-  </div>
 
-  <div className="flex flex-col items-center text-center w-[108px]">
-    <h3 className="text-sm md:text-base font-bold mb-1 md:mb-2">Expressiveness</h3>
-    <div className="space-y-0.5">
-      <p className="text-[11px] md:text-xs text-gray-600">다양한 무늬와</p>
-      <p className="text-[11px] md:text-xs text-gray-600">질감을 구현하는</p>
-      <p className="text-[11px] md:text-xs text-gray-600">표현력</p>
-    </div>
-  </div>
-
-  <div className="flex flex-col items-center text-center w-[108px]">
-    <h3 className="text-sm md:text-base font-bold mb-1 md:mb-2">Durability</h3>
-    <div className="space-y-0.5">
-      <p className="text-[11px] md:text-xs text-gray-600">스크래치·오염·</p>
-      <p className="text-[11px] md:text-xs text-gray-600">습기에 강한</p>
-      <p className="text-[11px] md:text-xs text-gray-600">내구성</p>
-    </div>
-  </div>
-</div>
-
-          <div></div>
-
-            </div>
-          </div>
+       
         </div>
       </div>
 
       <div className="fixed bottom-3 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
   <div className="flex justify-center">
     <div className="inline-flex items-center gap-3 md:gap-4 rounded-full px-2 py-1">
-      <Link href="/" className="flex flex-col items-center gap-1 group">
+      <Link href="/materials" className="flex flex-col items-center gap-1 group">
         <Image
-          src={pathname === "/" ? "/icons/main1-1-active.svg" : "/icons/main1-1.svg"}
+          src={pathname === "/materials" ? "/icons/main1-1-active.svg" : "/icons/main1-1.svg"}
           alt="MFB소개"
           width={250}
           height={250}
@@ -206,14 +373,14 @@ export default function Home() {
         />
         <span
           className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-            pathname === "/" ? "text-lime-600" : "text-gray-600"
+            pathname === "/materials" ? "text-lime-600" : "text-gray-600"
           }`}
         />
       </Link>
 
-      <Link href="/materials" className="flex flex-col items-center gap-1 group">
+      <Link href="/" className="flex flex-col items-center gap-1 group">
         <Image
-          src={pathname === "/materials" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
+          src={pathname === "/" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
           alt="3D MFB"
           width={250}
           height={250}
@@ -222,7 +389,7 @@ export default function Home() {
         />
         <span
           className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-            pathname === "/materials" ? "text-lime-600" : "text-gray-600"
+            pathname === "/" ? "text-lime-600" : "text-gray-600"
           }`}
         />
       </Link>
@@ -246,5 +413,13 @@ export default function Home() {
   </div>
 </div>
     </main>
+  )
+}
+
+export default function MaterialsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MaterialsPageContent />
+    </Suspense>
   )
 }

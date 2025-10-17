@@ -75,23 +75,23 @@ export default function QuotePage() {
         </div>
 
         <div className=" rounded-2xl p-4 mb-8 space-y-1">
-          <div className="flex items-start gap-1">
-            <span className="text-gray-900 font-medium min-w-[10px]">A</span>
+        <div className="flex items-start gap-1">
+            <span className="text-gray-900 font-semibold min-w-[10px]" style={{ fontFamily: 'Pretendard', fontSize: '16px', lineHeight: '22px', letterSpacing: '-0.03em' }}>A</span>
             <div>
-              <p className="text-sm text-gray-700">인천광역시 서구 도담5로 69 (22667)  건창기업(주)</p>
+              <p className="text-gray-700" style={{ fontFamily: 'Pretendard', fontWeight: '300', fontSize: '16px', lineHeight: '22px', letterSpacing: '-0.03em' }}>인천광역시 서구 도담5로 69 (22667)  건창기업(주)</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-gray-900 font-medium">T</span>
-            <p className="text-sm text-gray-700">032-813-8070~3</p>
+            <span className="text-gray-900 font-semibold" style={{ fontFamily: 'Pretendard', fontSize: '16px', lineHeight: '22px', letterSpacing: '-0.03em' }}>T</span>
+            <p className="text-gray-700" style={{ fontFamily: 'Pretendard', fontWeight: '300', fontSize: '16px', lineHeight: '22px', letterSpacing: '-0.03em' }}>032-813-8070~3</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-gray-900 font-medium">F</span>
-            <p className="text-sm text-gray-700"> 032-813-8074</p>
+            <span className="text-gray-900 font-semibold" style={{ fontFamily: 'Pretendard', fontSize: '16px', lineHeight: '22px', letterSpacing: '-0.03em' }}>F</span>
+            <p className="text-gray-700" style={{ fontFamily: 'Pretendard', fontWeight: '300', fontSize: '16px', lineHeight: '22px', letterSpacing: '-0.03em' }}> 032-813-8074</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-gray-900 font-medium">E</span>
-            <p className="text-sm text-gray-700">gc01@gunchang.com</p>
+            <span className="text-gray-900 font-semibold" style={{ fontFamily: 'Pretendard', fontSize: '16px', lineHeight: '22px', letterSpacing: '-0.03em' }}>E</span>
+            <p className="text-gray-700" style={{ fontFamily: 'Pretendard', fontWeight: '300', fontSize: '16px', lineHeight: '22px', letterSpacing: '-0.03em' }}>gc01@gunchang.com</p>
           </div>
         </div>
 
@@ -118,12 +118,14 @@ export default function QuotePage() {
       </button>
       </div>
       </div>
-      <div className="fixed bottom-3 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
+
+
+        <div className="fixed bottom-3 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
   <div className="flex justify-center">
     <div className="inline-flex items-center gap-3 md:gap-4 rounded-full px-2 py-1">
-      <Link href="/" className="flex flex-col items-center gap-1 group">
+      <Link href="/materials" className="flex flex-col items-center gap-1 group">
         <Image
-          src={pathname === "/" ? "/icons/main1-1-active.svg" : "/icons/main1-1.svg"}
+          src={pathname === "/materials" ? "/icons/main1-1-active.svg" : "/icons/main1-1.svg"}
           alt="MFB소개"
           width={250}
           height={250}
@@ -132,14 +134,14 @@ export default function QuotePage() {
         />
         <span
           className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-            pathname === "/" ? "text-lime-600" : "text-gray-600"
+            pathname === "/materials" ? "text-lime-600" : "text-gray-600"
           }`}
         />
       </Link>
 
-      <Link href="/materials" className="flex flex-col items-center gap-1 group">
+      <Link href="/" className="flex flex-col items-center gap-1 group">
         <Image
-          src={pathname === "/materials" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
+          src={pathname === "/" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
           alt="3D MFB"
           width={250}
           height={250}
@@ -148,7 +150,7 @@ export default function QuotePage() {
         />
         <span
           className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-            pathname === "/materials" ? "text-lime-600" : "text-gray-600"
+            pathname === "/" ? "text-lime-600" : "text-gray-600"
           }`}
         />
       </Link>

@@ -2,33 +2,49 @@
 
 import { Diamond } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 
 export default function WelcomePage() {
   const router = useRouter()
+  const [isChecking, setIsChecking] = useState(true)
 
   useEffect(() => {
-    // Check if user has already visited
-    const hasVisited = localStorage.getItem("hasVisitedBefore")
-    if (hasVisited) {
+    // Check if user has already visited (both cookie and localStorage)
+    const hasVisitedLocalStorage = localStorage.getItem("hasVisitedBefore")
+    const hasVisitedCookie = document.cookie.includes('hasVisitedBefore=true')
+    
+    if (hasVisitedLocalStorage || hasVisitedCookie) {
       // Redirect to home if already visited
       router.replace("/")
+    } else {
+      setIsChecking(false)
     }
   }, [router])
 
   const handleOpenSampleBook = () => {
-    // Mark as visited
+    // Mark as visited (both localStorage and cookie)
     localStorage.setItem("hasVisitedBefore", "true")
+    document.cookie = "hasVisitedBefore=true; max-age=31536000; path=/"
     // Navigate to installation instructions
     router.push("/install")
   }
 
   const handleAddToHomeScreen = () => {
-    // Mark as visited
+    // Mark as visited (both localStorage and cookie)
     localStorage.setItem("hasVisitedBefore", "true")
+    document.cookie = "hasVisitedBefore=true; max-age=31536000; path=/"
     // Navigate to installation instructions
     router.push("/install")
+  }
+
+  // Show loading state while checking
+  if (isChecking) {
+    return (
+      <main className="min-h-screen bg-[#0E132C] flex items-center justify-center">
+        <div className="text-white text-lg">로딩 중...</div>
+      </main>
+    )
   }
 
   return (

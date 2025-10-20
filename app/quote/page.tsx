@@ -114,13 +114,13 @@ export default function QuotePage() {
         className=" w-[166px] h-[46px] flex items-center justify-center gap-2 text-white font-medium py-4 rounded-full transition-colors shadow-sm"
         style={{ backgroundColor: "#C5D700" }}
       >
-        <Image src="/icons/nav1.png" alt="채팅하기" width={20} height={20} className="w-100 h-6 object-contain" />
+        <Image src="/icons/nav.png" alt="전화하기" width={100} height={46} className="w-50 h-6 object-contain" />
       </button>
       </div>
       </div>
 
 
-        <div className="fixed bottom-3 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3 z-50">
   <div className="flex justify-center">
     <div className="inline-flex items-center gap-3 md:gap-4 rounded-full px-2 py-1">
       <Link href="/materials" className="flex flex-col items-center gap-1 group">

@@ -217,10 +217,10 @@ export default function MaterialDetailPage() {
             style={{ 
               fontFamily: 'var(--font-dm-serif-text)', 
               fontWeight: '400', 
-              fontSize: '96px',
+              fontSize: '60px',
               color: categoryInitialColors[material.category] ?? '#D8BFB0',
               position: 'relative',
-              textShadow: '0 1px 1px rgba(0,0,0,30)',
+              
               
             }}
           >
@@ -236,7 +236,7 @@ export default function MaterialDetailPage() {
               color: categoryInitialColors[material.category] ?? '#D8BFB0',
               position: 'relative',
               display: 'inline-block',
-              textShadow: '0 1px 1px rgba(0,0,0,30)',
+              
               
             }}
           >

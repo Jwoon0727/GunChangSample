@@ -250,7 +250,7 @@ function MaterialsPageContent() {
   }
 
   return (
-    <main className="min-h-screen bg-white pb-15">
+    <main className="min-h-screen bg-white pb-15" style={{ height: '100vh', overflow: 'hidden' }}>
       <div className="container mx-auto px-4 py-12 md:py-10">
         {/* Header */}
         <div className="flex items-center justify-between mt--3 mb-6 md:mt-10 md:mb-8">
@@ -331,19 +331,31 @@ function MaterialsPageContent() {
                           placeholder="blur"
                           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                         />
-                        <div className="absolute bottom-6 left-6">
-                          <span 
-                            className="leading-none opacity-100" 
-                            style={{ 
-                              fontFamily: 'var(--font-dm-serif-text)', 
-                              fontWeight: '400', 
-                              fontSize: '58px', 
-                              color: categoryInitialColors[material.category] ?? '#D8BFB0',
-                              textShadow: '0 1px 1px rgba(0,0,0,30)',
-                            }}
-                          >
-                            {material.initial}
-                          </span>
+                   <div className="absolute bottom-6 left-6">
+  <span
+    className="leading-none opacity-100 relative inline-block"
+    style={{
+      fontFamily: 'var(--font-dm-serif-text)',
+      fontWeight: '400',
+      fontSize: '58px',
+      color: categoryInitialColors[material.category] ?? '#D8BFB0',
+      // 텍스트를 투명하게 만들고, 배경을 텍스트 안에 클리핑
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      backgroundImage: `
+        linear-gradient(
+          to right,
+          ${categoryInitialColors[material.category] ?? '#D8BFB0'} 70%,
+          ${categoryInitialColors[material.category] ?? '#D8BFB0'} 70%,
+          rgba(0,0,0,0) 150%
+        )
+      `,
+      filter: 'drop-shadow(4px 0px 8px rgba(0,0,0,0.6))',
+    }}
+  >
+    {material.initial}
+  </span>
+
                         </div>
                       </div>
                     </div>
@@ -359,7 +371,7 @@ function MaterialsPageContent() {
         </div>
       </div>
 
-      <div className="fixed bottom-3 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3 z-50">
   <div className="flex justify-center">
     <div className="inline-flex items-center gap-3 md:gap-4 rounded-full px-2 py-1">
       <Link href="/materials" className="flex flex-col items-center gap-1 group">

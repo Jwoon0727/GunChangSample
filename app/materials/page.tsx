@@ -207,7 +207,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="fixed bottom-3 left-0 right-0 bg-white border-t border-gray-200 py-2 z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3 z-50">
   <div className="flex justify-center">
     <div className="inline-flex items-center gap-3 md:gap-4 rounded-full px-2 py-1">
       <Link href="/materials" className="flex flex-col items-center gap-1 group">

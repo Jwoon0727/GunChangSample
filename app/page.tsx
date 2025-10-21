@@ -45,7 +45,7 @@ const materials = [
     category: "Wood",
     name: "Jamaican Wood",
     image: "/icons/1-4_J.jpg",
-    initial: "/icons/j.svg",
+    initial: "/icons/J.svg",
     initialWidth: 80,
     initialHeight: 150,
   },
@@ -54,7 +54,7 @@ const materials = [
     category: "Wood",
     name: "Wood Grain",
     image: "/icons/1-5_G.jpg",
-    initial: "/icons/g.svg",
+    initial: "/icons/G.svg",
     initialWidth: 80,
     initialHeight: 150,
   },
@@ -80,7 +80,7 @@ const materials = [
     category: "Stone",
     name: "Marble White",
     image: "/icons/2-3_NS.jpg",
-    initial: "/icons/ns.svg",
+    initial: "/icons/NS.svg",
     initialWidth: 80,
     initialHeight: 150,
   },
@@ -89,7 +89,7 @@ const materials = [
     category: "Stone",
     name: "Stone",
     image: "/icons/2-4_S.jpg",
-    initial: "/icons/s.svg",
+    initial: "/icons/S.svg",
     initialWidth: 80,
     initialHeight: 150,
   },
@@ -123,7 +123,7 @@ const materials = [
     category: "Fantasy",
     name: "Fabric",
     image: "/icons/5-1_F.jpg",
-    initial: "/icons/f.svg",
+    initial: "/icons/F.svg",
     initialWidth: 80,
     initialHeight: 150,
   },
@@ -132,7 +132,7 @@ const materials = [
     category: "Fantasy",
     name: "Soft Embossing",
     image: "/icons/5-2_ST.jpg",
-    initial: "/icons/st.svg",
+    initial: "/icons/ST.svg",
     initialWidth: 80,
     initialHeight: 150,
   },
@@ -141,7 +141,7 @@ const materials = [
     category: "Fantasy",
     name: "Prime Matt",
     image: "/icons/5-3_PM.jpg",
-    initial: "/icons/pm.svg",
+    initial: "/icons/PM.svg",
     initialWidth: 80,
     initialHeight: 150,
   },
@@ -318,28 +318,36 @@ function MaterialsPageContent() {
               scrollbarWidth: 'none', // Firefox
               msOverflowStyle: 'none', // Internet Explorer
               paddingLeft: '20px', // 더 왼쪽으로
-              paddingRight: '30px', // 다음 카드가 더 많이 보이도록
+              paddingRight: '20px', // 다음 카드가 더 많이 보이도록
               paddingBottom: '30px', // 그림자를 위한 추가 패딩
             }}
           >
-            <div className="flex gap-4 justify-start" style={{ width: 'max-content' }}>
-              {filteredMaterials.map((material, index) => (
-                <div key={material.id} className="flex-shrink-0 snap-start snap-always">
-                  <Link 
-                    href={`/materials/${material.id}?category=${selectedCategory}&index=${index}`}
-                    prefetch={true}
-                    scroll={false}
-                    onClick={() => handleMaterialClick(material.id)}
-                  >
-                                      <div className={`bg-white rounded-lg overflow-hidden cursor-pointer w-[290px] transition-all duration-600 ${
-                      index === currentIndex 
-                        ? 'scale-100 opacity-100' 
-                        : index === currentIndex + 1 
-                          ? 'scale-95 opacity-80' // 다음 카드
-                        : index === currentIndex - 1
-                          ? 'scale-95 opacity-80' // 이전 카드도 동일한 효과
-                          : 'scale-0 opacity-0'
-                    }`} style={{ boxShadow: '10px 12px 24px rgba(0,0,0,0.16)' }}>
+         <div className="flex gap-4 justify-start" style={{ width: 'max-content' }}>
+  {filteredMaterials.map((material, index) => (
+    <div
+      key={material.id}
+      className={`flex-shrink-0 snap-start snap-always`}
+      style={{
+        marginRight: index === filteredMaterials.length - 1 ? '20px' : '0', // 마지막 카드만 오른쪽 여백
+      }}
+    >
+      <Link 
+        href={`/materials/${material.id}?category=${selectedCategory}&index=${index}`}
+        prefetch={true}
+        scroll={false}
+        onClick={() => handleMaterialClick(material.id)}
+      >
+        <div
+          className={`bg-white rounded-lg overflow-hidden cursor-pointer w-[290px] transition-all duration-600 ${
+            index === currentIndex 
+              ? 'scale-100 opacity-100' 
+              : index === currentIndex + 1 
+                ? 'scale-95 opacity-80'
+                : index === currentIndex - 1
+                  ? 'scale-95 opacity-80'
+                  : 'scale-0 opacity-0'
+          }`}
+          style={{ boxShadow: '10px 12px 24px rgba(0,0,0,0.16)' }}>
                       <div className="aspect-[3/5.5] relative w-full h-full">
                         <Image
                           src={material.image}

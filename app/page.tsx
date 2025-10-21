@@ -251,7 +251,7 @@ function MaterialsPageContent() {
 
   return (
     <main className="min-h-screen bg-white pb-30" style={{ height: '100vh', overflow: 'hidden' }}>
-      <div className="container mx-auto px-4 py-8 md:py-10">
+      <div className="container mx-auto px-4 py-6 md:py-10">
         {/* Header */}
         <div className="flex items-center justify-between mt--3 mb-6 md:mt-10 md:mb-8">
           <Image
@@ -292,12 +292,13 @@ function MaterialsPageContent() {
           <div 
             ref={scrollContainerRef}
             onScroll={handleScroll}
-            className="overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory scrollbar-hide"
+            className="overflow-x-auto pb-8 scroll-smooth snap-x snap-mandatory scrollbar-hide"
             style={{
               scrollbarWidth: 'none', // Firefox
               msOverflowStyle: 'none', // Internet Explorer
               paddingLeft: '20px', // 더 왼쪽으로
               paddingRight: 'calc(100vw - 350px)', // 다음 카드가 더 많이 보이도록
+              paddingBottom: '30px', // 그림자를 위한 추가 패딩
             }}
           >
             <div className="flex gap-4 justify-start" style={{ width: 'max-content' }}>

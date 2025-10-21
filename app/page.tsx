@@ -251,7 +251,7 @@ function MaterialsPageContent() {
 
   return (
     <main className="min-h-screen bg-white pb-30" style={{ height: '100vh', overflow: 'hidden' }}>
-      <div className="container mx-auto px-4 py-6 md:py-10">
+      <div className="container mx-auto pl-4 py-6 md:py-10">
         {/* Header */}
         <div className="flex items-center justify-between mt--3 mb-6 md:mt-10 md:mb-8">
           <Image
@@ -333,30 +333,31 @@ function MaterialsPageContent() {
                           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                         />
                    <div className="absolute bottom-6 left-6">
-  <span
-    className="leading-none opacity-100 relative inline-block"
-    style={{
-      fontFamily: 'var(--font-dm-serif-text)',
-      fontWeight: '400',
-      fontSize: '58px',
-      color: categoryInitialColors[material.category] ?? '#D8BFB0',
-      // 텍스트를 투명하게 만들고, 배경을 텍스트 안에 클리핑
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundImage: `
-        linear-gradient(
-          to right,
-          ${categoryInitialColors[material.category] ?? '#D8BFB0'} 70%,
-          ${categoryInitialColors[material.category] ?? '#D8BFB0'} 70%,
-          rgba(0,0,0,0) 150%
-        )
-      `,
-      filter: 'drop-shadow(4px 0px 8px rgba(0,0,0,0.6))',
-    }}
-  >
-    {material.initial}
-  </span>
-
+                   <span
+  className="leading-none relative inline-block"
+  style={{
+    fontFamily: 'var(--font-dm-serif-text)',
+    fontWeight: '400',
+    fontSize: '58px',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundImage: `
+      linear-gradient(
+        to right,
+        ${categoryInitialColors[material.category] ?? '#CFC3B5'} 0%,
+        ${categoryInitialColors[material.category] ?? '#CFC3B5'} 40%,
+        rgba(26,26,26,0.1) 200%
+      )
+    `,
+ 
+    textShadow: `
+      inset 0.1px 0.1px 0.1px rgba(0,0,0,0.1),
+      inset -0.1px -0.1px 0.1px rgba(55,55,55,0.1)
+    `,
+  }}
+>
+  {material.initial}
+</span>
                         </div>
                       </div>
                     </div>

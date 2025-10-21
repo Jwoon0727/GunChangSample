@@ -97,7 +97,7 @@ export default function QuotePage() {
 
         <div className="grid grid-cols-2 gap-3 mb-8">
         <a
-  href="tel:032-813-8074"
+  href="tel:032-813-8070"
   className="w-[166px] h-[46px] flex items-center justify-center gap-2 rounded-full transition-colors shadow-sm"
   style={{ backgroundColor: "#C5D700" }}
 >
@@ -107,14 +107,14 @@ export default function QuotePage() {
         <button
         onClick={() =>
           window.open(
-            "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("인천광역시 서구 도담5로 69 (22667)"),
+            "https://map.naver.com/v5/search/" + encodeURIComponent("인천광역시 서구 도담5로 69"),
             "_blank"
           )
         }
         className=" w-[166px] h-[46px] flex items-center justify-center gap-2 text-white font-medium py-4 rounded-full transition-colors shadow-sm"
         style={{ backgroundColor: "#C5D700" }}
       >
-        <Image src="/icons/nav.png" alt="전화하기" width={100} height={46} className="w-50 h-6 object-contain" />
+        <Image src="/icons/nav.png" alt="안내시작" width={100} height={46} className="w-50 h-6 object-contain" />
       </button>
       </div>
       </div>

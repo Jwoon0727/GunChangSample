@@ -251,7 +251,7 @@ function MaterialsPageContent() {
 
   return (
     <main className="min-h-screen bg-white pb-30" style={{ height: '100vh', overflow: 'hidden' }}>
-      <div className="container mx-auto px-4 py-12 md:py-10">
+      <div className="container mx-auto px-4 py-8 md:py-10">
         {/* Header */}
         <div className="flex items-center justify-between mt--3 mb-6 md:mt-10 md:mb-8">
           <Image
@@ -364,12 +364,11 @@ function MaterialsPageContent() {
               ))}
             </div>
           </div>
-
-
-
-       
         </div>
       </div>
+      <br/>
+      <br/>
+   
 
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3 z-50">
   <div className="flex justify-center">

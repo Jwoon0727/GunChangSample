@@ -118,6 +118,7 @@ export default function QuotePage() {
       </button>
       </div>
       </div>
+  
 
 
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3 z-50">

@@ -250,7 +250,7 @@ function MaterialsPageContent() {
   }
 
   return (
-    <main className="min-h-screen bg-white pb-15" style={{ height: '100vh', overflow: 'hidden' }}>
+    <main className="min-h-screen bg-white pb-30" style={{ height: '100vh', overflow: 'hidden' }}>
       <div className="container mx-auto px-4 py-12 md:py-10">
         {/* Header */}
         <div className="flex items-center justify-between mt--3 mb-6 md:mt-10 md:mb-8">

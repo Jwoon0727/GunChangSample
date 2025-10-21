@@ -69,7 +69,7 @@ export default function Home() {
               </div>
               <div className="flex-1 text-left">
                 <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ fontFamily: 'var(--font-pragati-narrow)' }}>STEP 1</h2>
-                <p className="text-gray-700 leading-relaxed">데코페이퍼를 멜라민수지에 <br/>함침 → LPM 시트 제작</p>
+                <p className="text-lg text-gray-700 leading-relaxed">데코페이퍼를 멜라민수지에 <br/>함침 → LPM 시트 제작</p>
               </div>
             </div>
 
@@ -86,7 +86,7 @@ export default function Home() {
               </div>
               <div className="flex-1 text-left">
                 <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ fontFamily: 'var(--font-pragati-narrow)' }}>STEP 2</h2>
-                <p className="text-gray-700 leading-relaxed">열과 압력으로 LPM 시트를 <br/>
+                <p className="text-lg text-gray-700 leading-relaxed">열과 압력으로 LPM 시트를 <br/>
                 보드에 접착 → MFB 생산</p>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function Home() {
                   />
                 </div>
         
-                <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                <p className="text-lg md:text-base text-gray-700 leading-relaxed">
                 일반 프레스 압착 
                 <br/>→ 매끈한 표면
                 </p>
@@ -119,7 +119,7 @@ export default function Home() {
                   />
                 </div>
          
-                <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+                <p className="text-lg md:text-base text-gray-700 leading-relaxed">
                 경면 프레스 압착 
                 <br/>→ 질감 있는 표면
                 </p>
@@ -128,7 +128,7 @@ export default function Home() {
           </div>
 <br/>
 <br/>
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-2">
   <div className="max-w-4xl mx-auto">
     <div className="flex justify-start">
       <Image
@@ -158,44 +158,29 @@ export default function Home() {
 {/* Feature Texts */}
 <div className="flex justify-center gap-0 -md:gap-2 px-2">
   <div className="flex flex-col items-center text-center w-[118px]">
-    <h3 
-      className="text-base md:text-lg font-bold mb-1 md:mb-2" 
-      style={{ fontFamily: 'var(--font-pragati-narrow)' }}
-    >
-      Eco-friendly
-    </h3>
+  <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ fontFamily: 'var(--font-pragati-narrow)' }}>Eco-Friendly</h2>
     <div className="space-y-1">
-      <p className="text-[13px] md:text-sm text-gray-600 leading-tight">접착제 없이</p>
-      <p className="text-[13px] md:text-sm text-gray-600 leading-tight">제작한</p>
-      <p className="text-[13px] md:text-sm text-gray-600 leading-tight">친환경성</p>
+      <p className="text-lg md:text-sm text-gray-600 leading-tight">접착제 없이</p>
+      <p className="text-lg md:text-sm text-gray-600 leading-tight">제작한</p>
+      <p className="text-lg md:text-sm text-gray-600 leading-tight">친환경성</p>
     </div>
   </div>
 
   <div className="flex flex-col items-center text-center w-[118px]">
-    <h3 
-      className="text-base md:text-lg font-bold mb-1 md:mb-2" 
-      style={{ fontFamily: 'var(--font-pragati-narrow)' }}
-    >
-      Expressiveness
-    </h3>
+  <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ fontFamily: 'var(--font-pragati-narrow)' }}>Expressiveness</h2>
     <div className="space-y-1">
-      <p className="text-[13px] md:text-sm text-gray-600 leading-tight">다양한 무늬와</p>
-      <p className="text-[13px] md:text-sm text-gray-600 leading-tight">질감을 구현하는</p>
-      <p className="text-[13px] md:text-sm text-gray-600 leading-tight">표현력</p>
+      <p className="text-lg md:text-sm text-gray-600 leading-tight">다양한 무늬와</p>
+      <p className="text-lg md:text-sm text-gray-600 leading-tight">질감을 구현하는</p>
+      <p className="text-lg md:text-sm text-gray-600 leading-tight">표현력</p>
     </div>
   </div>
 
   <div className="flex flex-col items-center text-center w-[118px]">
-    <h3 
-      className="text-base md:text-lg font-bold mb-1 md:mb-2" 
-      style={{ fontFamily: 'var(--font-pragati-narrow)' }}
-    >
-      Durability
-    </h3>
+  <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ fontFamily: 'var(--font-pragati-narrow)' }}>Durability</h2>
     <div className="space-y-1">
-      <p className="text-[13px] md:text-sm text-gray-600 leading-tight">스크래치·오염·</p>
-      <p className="text-[13px] md:text-sm text-gray-600 leading-tight">습기에 강한</p>
-      <p className="text-[13px] md:text-sm text-gray-600 leading-tight">내구성</p>
+      <p className="text-lg md:text-sm text-gray-600 leading-tight">스크래치·오염·</p>
+      <p className="text-lg md:text-sm text-gray-600 leading-tight">습기에 강한</p>
+      <p className="text-lg md:text-sm text-gray-600 leading-tight">내구성</p>
     </div>
   </div>
 </div>

@@ -18,115 +18,134 @@ const materials = [
     category: "Wood",
     name: "LV Wood Texture",
     image: "/icons/1-1_LV.jpg",
-    initial: "LV",
+    initial: "/icons/LV.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 2,
     category: "Wood",
     name: "Vertical",
     image: "/icons/1-2_VT.jpg",
-    initial: "VT",
+    initial: "/icons/VT1.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 3,
     category: "Wood",
     name: "Lined Wood",
     image: "/icons/1-3_L.jpg",
-    initial: "L",
+    initial: "/icons/L.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 4,
     category: "Wood",
     name: "Jamaican Wood",
     image: "/icons/1-4_J.jpg",
-    initial: "J",
+    initial: "/icons/j.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 5,
     category: "Wood",
     name: "Wood Grain",
     image: "/icons/1-5_G.jpg",
-    initial: "G",
+    initial: "/icons/g.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 6,
     category: "Stone",
     name: "Volcano Stone",
     image: "/icons/2-1_VS.jpg",
-    initial: "VS",
+    initial: "/icons/VS.svg",
+    
   },
   {
     id: 7,
     category: "Stone",
     name: "Mortar Stone",
     image: "/icons/2-2_MT.jpg",
-    initial: "MT",
+    initial: "/icons/MT.svg",
+    initialWidth: 75,
+    initialHeight: 90,
   },
   {
     id: 8,
     category: "Stone",
     name: "Marble White",
     image: "/icons/2-3_NS.jpg",
-    initial: "NS",
+    initial: "/icons/ns.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 9,
     category: "Stone",
     name: "Stone",
     image: "/icons/2-4_S.jpg",
-    initial: "S",
+    initial: "/icons/s.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 10,
     category: "Leather",
     name: "Calf Skin",
     image: "/icons/3-1_CS.jpg",
-    initial: "CS",
+    initial: "/icons/CS.svg",
   },
   {
     id: 11,
     category: "Leather",
     name: "Togo Skin",
     image: "/icons/3-2_TS.jpg",
-    initial: "TS",
+    initial: "/icons/TS.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 12,
     category: "Metal",
     name: "Titanium",
     image: "/icons/4_TI.jpg",
-    initial: "TI",
+    initial: "/icons/TI.svg",
+    initialWidth: 60,
+    initialHeight: 80,
   },
   {
     id: 13,
     category: "Fantasy",
     name: "Fabric",
     image: "/icons/5-1_F.jpg",
-    initial: "F",
+    initial: "/icons/f.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 14,
     category: "Fantasy",
     name: "Soft Embossing",
     image: "/icons/5-2_ST.jpg",
-    initial: "ST",
+    initial: "/icons/st.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
   {
     id: 15,
     category: "Fantasy",
     name: "Prime Matt",
     image: "/icons/5-3_PM.jpg",
-    initial: "PM",
+    initial: "/icons/pm.svg",
+    initialWidth: 80,
+    initialHeight: 150,
   },
 ]
-// MaterialsPageContent() 내부 최상단 근처에 추가
-const categoryInitialColors: Record<string, string> = {
-  Wood: '#CFB5A5',
-  Stone: '#9F9F9F',
-  Leather: '#816558',
-  Metal: '#B8C1C8',
-  Fantasy: '#7F8E9F',
-}
 
 function MaterialsPageContent() {
   const pathname = usePathname()
@@ -264,27 +283,29 @@ function MaterialsPageContent() {
         </div>
 
         {/* Category Filter Buttons */}
-        <div 
-          className="flex gap-2 mb-8 md:mb-16 overflow-x-auto pb-2 scrollbar-hide"
-          style={{
-            scrollbarWidth: 'none', // Firefox
-            msOverflowStyle: 'none', // Internet Explorer
-          }}
-        >
-{categories.map((category) => (
-  <button
-    key={category}
-    onClick={() => handleCategoryChange(category)}
-    className={`px-4 py-1 transition-all duration-300 whitespace-nowrap flex-shrink-0 rounded-lg border-2 font-medium text-[19px] tracking-[0.03em] leading-normal ${
-      selectedCategory === category
-        ? "bg-[#C5D700] text-white border-[#C5D700] shadow-md scale-105"
-        : "bg-white text-[#C5D700] border-[#C5D700]"
-    }`}
-    style={{ fontFamily: 'var(--font-pragati-narrow)' }}
-  >
-    {category}
-  </button>
-))}
+        {/* Category Filter Buttons */}
+<div 
+  className="flex gap-2 mb-8 md:mb-16 overflow-x-auto pb-2 scrollbar-hide"
+  style={{
+    scrollbarWidth: 'none', // Firefox
+    msOverflowStyle: 'none', // Internet Explorer
+    paddingRight: '16px',    // 오른쪽 여백 추가
+  }}
+>
+  {categories.map((category) => (
+    <button
+      key={category}
+      onClick={() => handleCategoryChange(category)}
+      className={`px-4 py-1 transition-all duration-300 whitespace-nowrap flex-shrink-0 rounded-lg border-2 font-medium text-[19px] tracking-[0.03em] leading-normal ${
+        selectedCategory === category
+          ? "bg-[#C5D700] text-white border-[#C5D700] shadow-md scale-105"
+          : "bg-white text-[#C5D700] border-[#C5D700]"
+      }`}
+      style={{ fontFamily: 'var(--font-pragati-narrow)' }}
+    >
+      {category}
+    </button>
+  ))}
 </div>
         {/* Carousel Container */}
         <div className="relative w-full ml-0 mr-auto mt-8">
@@ -297,7 +318,7 @@ function MaterialsPageContent() {
               scrollbarWidth: 'none', // Firefox
               msOverflowStyle: 'none', // Internet Explorer
               paddingLeft: '20px', // 더 왼쪽으로
-              paddingRight: 'calc(100vw - 350px)', // 다음 카드가 더 많이 보이도록
+              paddingRight: '30px', // 다음 카드가 더 많이 보이도록
               paddingBottom: '30px', // 그림자를 위한 추가 패딩
             }}
           >
@@ -333,31 +354,15 @@ function MaterialsPageContent() {
                           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                         />
                    <div className="absolute bottom-6 left-6">
-                   <span
-  className="leading-none relative inline-block"
-  style={{
-    fontFamily: 'var(--font-dm-serif-text)',
-    fontWeight: '400',
-    fontSize: '58px',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundImage: `
-      linear-gradient(
-        to right,
-        ${categoryInitialColors[material.category] ?? '#CFC3B5'} 0%,
-        ${categoryInitialColors[material.category] ?? '#CFC3B5'} 40%,
-        rgba(26,26,26,0.1) 200%
-      )
-    `,
- 
-    textShadow: `
-      inset 0.1px 0.1px 0.1px rgba(0,0,0,0.1),
-      inset -0.1px -0.1px 0.1px rgba(55,55,55,0.1)
-    `,
-  }}
->
-  {material.initial}
-</span>
+                   <Image
+    src={material.initial}
+    alt={material.name}
+    width={material.initialWidth ?? 60}   // 기본값 60
+    height={material.initialHeight ?? 60} // 기본값 60
+    className="object-contain max-w-full max-h-full"
+    priority={index < 3}
+    loading={index < 3 ? "eager" : "lazy"}
+  />
                         </div>
                       </div>
                     </div>

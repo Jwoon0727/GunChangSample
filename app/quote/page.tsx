@@ -45,13 +45,19 @@ export default function QuotePage() {
         </div>
 
         <div className="text-center mb-8">
-          <Image
-            src="/icons/text.png"
-            alt="손끝에 느껴지는 감각, 공간 디자인을 완성하다."
-            width={290}
-            height={60}
-            className="object-contain mx-auto"
-          />
+          <h1 
+            className="text-gray-800"
+            style={{ 
+              fontFamily: 'var(--font-noto-serif-kr)',
+              fontSize: '26px',
+              fontWeight: '550',
+              lineHeight: '38px',
+              letterSpacing: '-0.05em'
+            }}
+          >
+            손끝에 느껴지는 질감,<br/>
+            공간 디자인을 완성하다.
+          </h1>
         </div>
 
         <div className="mb-6 rounded-2xl overflow-hidden shadow-sm">
@@ -66,11 +72,6 @@ export default function QuotePage() {
       referrerPolicy="no-referrer-when-downgrade"
       className="absolute inset-0 w-full h-full grayscale"
     />
-
-    
-            <div className="absolute bottom-4 left-4 bg-lime-500 rounded-full p-3 shadow-lg">
-              <div className="w-4 h-4 bg-white rounded-full" />
-            </div>
           </div>
         </div>
 

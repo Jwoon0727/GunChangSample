@@ -43,21 +43,32 @@ export default function Home() {
     <main className="min-h-screen bg-white pb-25">
       {/* Header Section */}
       <div className="container mx-auto px-4 py-8 md:py-12">
-        <div className="max-w-4xl mx-auto">
-          <Image
-            src="/icons/MFBPS.png"
-            alt="MFB"
-            width={160}
-            height={80}
-            className="object-contain mb-2"
-          />
-        <br/>
-        <br/>
+        <div className="max-w-4xl mx-auto text-left">
+          <h1 
+            className="text-gray-800 -mb-1"
+            style={{ 
+              fontFamily: 'var(--font-dm-serif-text)',
+              fontSize: '32px',
+              fontWeight: '400'
+            }}
+          >
+            MFB
+          </h1>
+          <p 
+            className="text-gray-800 mb-12"
+            style={{ 
+              fontFamily: 'var(--font-dm-serif-text)',
+              fontSize: '19px',
+              fontWeight: '400'
+            }}
+          >
+            MAKING PROCESS
+          </p>
 
           {/* Process Steps */}
           <div className="space-y-12 md:space-y-16">
             {/* Step 1 */}
-            <div className="flex flex-row items-start gap-6">
+            <div className="flex flex-row items-start gap-6 mb-0">
             <div className="flex-shrink-0 w-full max-w-[150px] md:w-60">
             <div className=" rounded-lg p-2 md:p-6 aspect-square flex items-center justify-center">
                   <img
@@ -67,14 +78,14 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="flex-1 text-left">
+              <div className="flex-1 text-left mt-7">
                 <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ fontFamily: 'var(--font-pragati-narrow)' }}>STEP 1</h2>
                 <p className="text-base text-gray-700 leading-relaxed">데코페이퍼를 멜라민수지에 <br/>함침 → LPM 시트 제작</p>
               </div>
             </div>
 
             {/* Step 2 */}
-            <div className="flex flex-row items-start gap-6">
+            <div className="flex flex-row items-start gap-6 mb-0">
             <div className="flex-shrink-0 w-full max-w-[150px] md:w-48">
             <div className=" rounded-lg p-2 md:p-6 aspect-square flex items-center justify-center">
                   <img
@@ -84,7 +95,7 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="flex-1 text-left">
+              <div className="flex-1 text-left mt-8">
                 <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ fontFamily: 'var(--font-pragati-narrow)' }}>STEP 2</h2>
                 <p className="text-base text-gray-700 leading-relaxed">열과 압력으로 LPM 시트를 <br/>
                 보드에 접착 → MFB 생산</p>
@@ -127,22 +138,32 @@ export default function Home() {
             </div>
           </div>
 <br/>
-<br/>
           <div className="container mx-auto px-2">
-  <div className="max-w-4xl mx-auto">
-    <div className="flex justify-start">
-      <Image
-        src="/icons/MFBAD.png"
-        alt="ADVANTAGES"
-        width={130}
-        height={80}
-        className="object-contain mb-0"
-      />
+          <div className="container mx-auto pl-0 pr-2 py-4 md:py-6">
+          <div className="max-w-4xl mx-auto">
+    <h1 
+            className="text-gray-800 -mb-1"
+            style={{ 
+              fontFamily: 'var(--font-dm-serif-text)',
+              fontSize: '32px',
+              fontWeight: '400'
+            }}
+          >
+            MFB
+          </h1>
+          <p 
+            className="text-gray-800 mb--10"
+            style={{ 
+              fontFamily: 'var(--font-dm-serif-text)',
+              fontSize: '19px',
+              fontWeight: '400'
+            }}
+          >
+            ADVANTAGES
+          </p>
     </div>
   </div>
 </div>
-<br/>
-
        {/* Features Section */}
 <div className="  border-gray-200">
   <div className="flex flex-col items-center text-center">

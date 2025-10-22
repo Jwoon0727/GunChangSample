@@ -154,11 +154,34 @@ function MaterialsPageContent() {
   const [selectedCategory, setSelectedCategory] = useState("Wood")
   const [currentIndex, setCurrentIndex] = useState(0)
   const [imagesLoaded, setImagesLoaded] = useState(false)
+  const [isCheckingVisit, setIsCheckingVisit] = useState(true)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const isScrollingRef = useRef(false)
 
-  // URL 파라미터에서 인덱스 복원
+  // 페이지 로드 전에 방문 이력 확인
   useEffect(() => {
+    const checkVisitHistory = () => {
+      // localStorage와 cookie 모두 확인
+      const hasVisitedLocalStorage = localStorage.getItem("hasVisitedBefore")
+      const hasVisitedCookie = document.cookie.includes('hasVisitedBefore=true')
+      
+      if (!hasVisitedLocalStorage && !hasVisitedCookie) {
+        // 처음 방문하는 경우 welcome 페이지로 리다이렉트
+        router.replace("/welcome")
+        return
+      }
+      
+      // 방문 이력이 있는 경우에만 페이지 로드 계속
+      setIsCheckingVisit(false)
+    }
+
+    checkVisitHistory()
+  }, [router])
+
+  // URL 파라미터에서 인덱스 복원 (방문 이력 확인 후에만 실행)
+  useEffect(() => {
+    if (isCheckingVisit) return // 방문 이력 확인 중이면 실행하지 않음
+    
     const savedIndex = searchParams.get('index')
     const savedCategory = searchParams.get('category')
     
@@ -168,10 +191,12 @@ function MaterialsPageContent() {
     if (savedCategory) {
       setSelectedCategory(savedCategory)
     }
-  }, [searchParams])
+  }, [searchParams, isCheckingVisit])
 
-  // 개선된 이미지 프리로딩 - 유틸리티 함수 사용
+  // 개선된 이미지 프리로딩 - 유틸리티 함수 사용 (방문 이력 확인 후에만 실행)
   useEffect(() => {
+    if (isCheckingVisit) return // 방문 이력 확인 중이면 실행하지 않음
+    
     const initializeImageCaching = async () => {
       try {
         // 캐시 정리
@@ -189,10 +214,12 @@ function MaterialsPageContent() {
 
     // 메인 스레드를 블록하지 않도록 지연 실행
     setTimeout(initializeImageCaching, 0)
-  }, [])
+  }, [isCheckingVisit])
 
-  // 스크롤 위치를 현재 인덱스에 맞춰 조정
+  // 스크롤 위치를 현재 인덱스에 맞춰 조정 (방문 이력 확인 후에만 실행)
   useEffect(() => {
+    if (isCheckingVisit) return // 방문 이력 확인 중이면 실행하지 않음
+    
     if (scrollContainerRef.current && !isScrollingRef.current) {
       const container = scrollContainerRef.current
       const cardWidth = 290 + 16
@@ -203,7 +230,7 @@ function MaterialsPageContent() {
         behavior: 'auto' // smooth 대신 auto로 즉시 이동
       })
     }
-  }, [currentIndex])
+  }, [currentIndex, isCheckingVisit])
 
   const filteredMaterials = materials.filter((m) => m.category === selectedCategory)
 
@@ -268,19 +295,35 @@ function MaterialsPageContent() {
     updateURL(selectedCategory, materialIndex)
   }
 
+  // 방문 이력 확인 중이면 로딩 표시
+  if (isCheckingVisit) {
+    return (
+      <main className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C5D700] mx-auto mb-4"></div>
+          <p className="text-gray-600">로딩 중...</p>
+        </div>
+      </main>
+    )
+  }
+
   return (
     <main className="min-h-screen bg-white pb-30" style={{ height: '100vh', overflow: 'hidden' }}>
       <div className="container mx-auto pl-4 py-6 md:py-10">
         {/* Header */}
-        <div className="flex items-center justify-between mt--3 mb-6 md:mt-10 md:mb-8">
-          <Image
-            src="/icons/MFB.png" // 이미지 경로를 입력하세요
-            alt="3D MFB"
-            width={106}
-            height={44}
-            className="object-contain"
-          />
-        </div>
+       {/* Header */}
+<div className="flex items-center justify-between mt--3 mb-6 md:mt-10 md:mb-8">
+  <h1 
+    className="text-gray-800"
+    style={{ 
+      fontFamily: 'var(--font-dm-serif-text)',
+      fontSize: '32px',
+      fontWeight: '400'
+    }}
+  >
+    3D MFB
+  </h1>
+</div>
 
         {/* Category Filter Buttons */}
         {/* Category Filter Buttons */}

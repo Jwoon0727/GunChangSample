@@ -1,6 +1,6 @@
 
 import type { Metadata } from "next";
-import { Inter, Pragati_Narrow, DM_Serif_Text } from "next/font/google";
+import { Inter, Pragati_Narrow, DM_Serif_Text, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -13,6 +13,11 @@ const dmSerifText = DM_Serif_Text({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-dm-serif-text",
+});
+const notoSerifKR = Noto_Serif_KR({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-noto-serif-kr",
 });
 
 // Pretendard 폰트는 CSS로 로드 (Google Fonts에 없음)
@@ -47,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${pragatiNarrow.variable} ${dmSerifText.variable} ${pretendard.variable}`}>
+    <html lang="en" className={`${pragatiNarrow.variable} ${dmSerifText.variable} ${notoSerifKR.variable} ${pretendard.variable}`}>
       <body className={inter.className}>{children}</body>
     </html>
   );

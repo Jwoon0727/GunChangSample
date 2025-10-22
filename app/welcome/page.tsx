@@ -22,30 +22,25 @@ export default function WelcomePage() {
     }
   }, [router])
 
-  const handleOpenSampleBook = () => {
+  const markAsVisited = () => {
     // Mark as visited (both localStorage and cookie)
     localStorage.setItem("hasVisitedBefore", "true")
     document.cookie = "hasVisitedBefore=true; max-age=31536000; path=/"
+  }
+
+  const handleOpenSampleBook = () => {
+    markAsVisited()
     // Navigate to installation instructions
     router.push("/install")
   }
 
   const handleAddToHomeScreen = () => {
-    // Mark as visited (both localStorage and cookie)
-    localStorage.setItem("hasVisitedBefore", "true")
-    document.cookie = "hasVisitedBefore=true; max-age=31536000; path=/"
-    // Navigate to installation instructions
-    router.push("/install")
+    markAsVisited()
+    // Open external website
+    window.open("https://gunchang.com/", "_blank")
   }
 
-  // Show loading state while checking
-  if (isChecking) {
-    return (
-      <main className="min-h-screen bg-[#0E132C] flex items-center justify-center">
-        <div className="text-white text-lg">로딩 중...</div>
-      </main>
-    )
-  }
+
 
   return (
     <main className="min-h-screen bg-[#0E132C] flex flex-col items-stretch justify-start px-0 py-12">

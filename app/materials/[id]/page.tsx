@@ -217,7 +217,7 @@ export default function MaterialDetailPage() {
             style={{ 
               fontFamily: 'var(--font-dm-serif-text)', 
               fontWeight: '400', 
-              fontSize: '60px',
+              fontSize: '65px',
               color: categoryInitialColors[material.category] ?? '#D8BFB0',
               position: 'relative',
               
@@ -231,8 +231,8 @@ export default function MaterialDetailPage() {
             className="drop-shadow-lg font-medium" 
             style={{ 
               fontFamily: 'var(--font-pretendard)', 
-              fontWeight: '400', 
-              fontSize: '25px',
+              fontWeight: '200', 
+              fontSize: '20px',
               color: categoryInitialColors[material.category] ?? '#D8BFB0',
               position: 'relative',
               display: 'inline-block',

@@ -32,7 +32,7 @@ export default function QuotePage() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-white pb-10">
+    <main className="min-h-screen bg-white pb-10" style={{ touchAction: 'pan-x pan-y', userSelect: 'none' }}>
       <div className="container mx-auto px-4 py-6 md:py-8 max-w-md">
         <div className="flex items-center justify-center mb-8 mt-8">
           <Image

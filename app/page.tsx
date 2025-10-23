@@ -298,7 +298,7 @@ function MaterialsPageContent() {
   // 방문 이력 확인 중이면 로딩 표시
   if (isCheckingVisit) {
     return (
-      <main className="min-h-screen bg-white flex items-center justify-center">
+      <main className="min-h-screen bg-white flex items-center justify-center" style={{ touchAction: 'pan-x pan-y', userSelect: 'none' }}>
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C5D700] mx-auto mb-4"></div>
           <p className="text-gray-600">로딩 중...</p>
@@ -308,7 +308,7 @@ function MaterialsPageContent() {
   }
 
   return (
-    <main className="min-h-screen bg-white pb-30" style={{ height: '100vh', overflow: 'hidden' }}>
+    <main className="min-h-screen bg-white pb-30" style={{ height: '100vh', overflow: 'hidden', touchAction: 'pan-x pan-y', userSelect: 'none' }}>
       <div className="container mx-auto pl-4 py-6 md:py-10">
         {/* Header */}
        {/* Header */}
@@ -328,7 +328,7 @@ function MaterialsPageContent() {
         {/* Category Filter Buttons */}
         {/* Category Filter Buttons */}
 <div 
-  className="flex gap-2 mb-8 md:mb-16 overflow-x-auto pb-2 scrollbar-hide"
+  className="flex gap-2 mb-8 md:mb-16 overflow-x-auto pb-2 scrollbar-hide mt-[-14px]"
   style={{
     scrollbarWidth: 'none', // Firefox
     msOverflowStyle: 'none', // Internet Explorer

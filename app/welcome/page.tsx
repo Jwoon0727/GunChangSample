@@ -43,7 +43,7 @@ export default function WelcomePage() {
 
 
   return (
-    <main className="min-h-screen bg-[#0E132C] flex flex-col items-stretch justify-start px-0 py-12">
+    <main className="min-h-screen bg-[#0E132C] flex flex-col items-stretch justify-start px-0 py-12" style={{ touchAction: 'pan-x pan-y', userSelect: 'none' }}>
     <div className="w-full flex flex-col items-start space-y-14 flex-1">
       {/* Logo */}
       <div className="relative flex items-start justify-start mt-27 pl-9 md:pl-9">

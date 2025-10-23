@@ -114,8 +114,8 @@ const materials = [
     name: "Titanium",
     image: "/icons/4_TI.jpg",
     initial: "/icons/TI1.svg",
-    initialWidth: 55,
-    initialHeight: 60,
+    initialWidth: 90,
+    initialHeight: 160,
   },
   {
     id: 13,

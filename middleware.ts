@@ -2,20 +2,10 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
-  
-  // Only handle welcome page redirect
-  if (pathname === '/welcome') {
-    const hasVisitedBefore = request.cookies.get('hasVisitedBefore')
-    
-    if (hasVisitedBefore) {
-      return NextResponse.redirect(new URL('/', request.url))
-    }
-  }
-  
+  // 미들웨어 로직 제거 - 모든 요청을 그대로 통과
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/welcome'],
+  matcher: [],
 }

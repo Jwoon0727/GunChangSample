@@ -141,9 +141,9 @@ export default function QuotePage() {
         />
       </Link>
 
-      <Link href="/" className="flex flex-col items-center gap-1 group">
+      <Link href="/welcome" className="flex flex-col items-center gap-1 group">
         <Image
-          src={pathname === "/" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
+          src={pathname === "/welcome" ? "/icons/main2-2-active.svg" : "/icons/main2-2.svg"}
           alt="3D MFB"
           width={250}
           height={250}
@@ -152,7 +152,7 @@ export default function QuotePage() {
         />
         <span
           className={`text-xs md:text-sm font-medium transition-colors duration-300 ${
-            pathname === "/" ? "text-lime-600" : "text-gray-600"
+            pathname === "/welcome" ? "text-lime-600" : "text-gray-600"
           }`}
         />
       </Link>

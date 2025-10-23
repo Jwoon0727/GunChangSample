@@ -11,12 +11,7 @@ export default function Home() {
   const pathname = usePathname()
   const [imagesLoaded, setImagesLoaded] = useState(false)
 
-  useEffect(() => {
-    const hasVisited = localStorage.getItem("hasVisitedBefore")
-    if (!hasVisited) {
-      router.replace("/welcome")
-    }
-  }, [router])
+  // 첫 방문자 체크 로직 제거 - welcome 페이지에서 직접 이동 가능하도록 함
 
   // 이미지 프리로딩
   useEffect(() => {

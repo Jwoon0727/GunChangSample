@@ -298,7 +298,16 @@ function MaterialsPageContent() {
   // 방문 이력 확인 중이면 로딩 표시
   if (isCheckingVisit) {
     return (
-      <main className="min-h-screen bg-white flex items-center justify-center" style={{ touchAction: 'pan-x pan-y', userSelect: 'none' }}>
+      <main className="min-h-screen bg-white flex items-center justify-center" style={{ 
+        touchAction: 'pan-x pan-y', 
+        WebkitTouchCallout: 'none',
+        WebkitUserSelect: 'none',
+        KhtmlUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        userSelect: 'none',
+        WebkitTapHighlightColor: 'transparent'
+      }}>
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C5D700] mx-auto mb-4"></div>
           <p className="text-gray-600">로딩 중...</p>
@@ -308,7 +317,18 @@ function MaterialsPageContent() {
   }
 
   return (
-    <main className="min-h-screen bg-white pb-30" style={{ height: '100vh', overflow: 'hidden', touchAction: 'pan-x pan-y', userSelect: 'none' }}>
+    <main className="min-h-screen bg-white pb-30" style={{ 
+      height: '100vh', 
+      overflow: 'hidden', 
+      touchAction: 'pan-x pan-y', 
+      WebkitTouchCallout: 'none',
+      WebkitUserSelect: 'none',
+      KhtmlUserSelect: 'none',
+      MozUserSelect: 'none',
+      msUserSelect: 'none',
+      userSelect: 'none',
+      WebkitTapHighlightColor: 'transparent'
+    }}>
       <div className="container mx-auto pl-4 py-6 md:py-10">
         {/* Header */}
        {/* Header */}
@@ -363,6 +383,10 @@ function MaterialsPageContent() {
               paddingLeft: '20px', // 더 왼쪽으로
               paddingRight: '20px', // 다음 카드가 더 많이 보이도록
               paddingBottom: '30px', // 그림자를 위한 추가 패딩
+              touchAction: 'pan-x pan-y', // 확대/축소 방지
+              WebkitTouchCallout: 'none',
+              WebkitUserSelect: 'none',
+              userSelect: 'none'
             }}
           >
          <div className="flex gap-4 justify-start" style={{ width: 'max-content' }}>

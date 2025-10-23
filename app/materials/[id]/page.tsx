@@ -178,7 +178,16 @@ export default function MaterialDetailPage() {
   }
 
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen relative" style={{ 
+      touchAction: 'auto',
+      userSelect: 'auto',
+      WebkitTouchCallout: 'default',
+      WebkitUserSelect: 'auto',
+      KhtmlUserSelect: 'auto',
+      MozUserSelect: 'auto',
+      msUserSelect: 'text' as any,
+      WebkitTapHighlightColor: 'rgba(0,0,0,0.1)'
+    }}>
       {/* Full-screen background image with Next.js Image optimization */}
       <div className="absolute inset-0">
         <Image

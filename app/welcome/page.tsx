@@ -113,7 +113,7 @@ const materials = [
     category: "Metal",
     name: "Titanium",
     image: "/icons/4_TI.jpg",
-    initial: "/icons/TI.svg",
+    initial: "/icons/TI1.svg",
     initialWidth: 55,
     initialHeight: 60,
   },

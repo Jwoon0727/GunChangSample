@@ -1,5 +1,3 @@
-import { Diamond, Chrome, Menu, Share } from "lucide-react"
-import Link from "next/link"
 import Image from "next/image"
 
 export default function InstallPage() {
@@ -8,7 +6,7 @@ export default function InstallPage() {
       <div className="max-w-md w-full flex flex-col items-center space-y-8">
          {/* App Icon */}
          <div className="relative mt-28">
-    <Link href="/">
+ 
       <Image
         src="/icons/homeadd.png"
         alt="앱 아이콘"
@@ -17,7 +15,7 @@ export default function InstallPage() {
         className="object-contain rounded-2xl cursor-pointer"
         priority
       />
-    </Link>
+  
   </div>
 
   <div className="relative mt-18">

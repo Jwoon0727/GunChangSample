@@ -114,8 +114,8 @@ const materials = [
     name: "Titanium",
     image: "/icons/4_TI.jpg",
     initial: "/icons/TI.svg",
-    initialWidth: 60,
-    initialHeight: 80,
+    initialWidth: 55,
+    initialHeight: 60,
   },
   {
     id: 13,
@@ -123,7 +123,7 @@ const materials = [
     name: "Fabric",
     image: "/icons/5-1_F.jpg",
     initial: "/icons/F.svg",
-    initialWidth: 80,
+    initialWidth: 95,
     initialHeight: 150,
   },
   {
@@ -132,7 +132,7 @@ const materials = [
     name: "Soft Embossing",
     image: "/icons/5-2_ST.jpg",
     initial: "/icons/ST.svg",
-    initialWidth: 80,
+    initialWidth: 85,
     initialHeight: 150,
   },
   {

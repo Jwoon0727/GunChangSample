@@ -40,7 +40,7 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-white pb-25">
+    <main className="min-h-screen bg-white pb-25" style={{ touchAction: 'pan-x pan-y', userSelect: 'none' }}>
       {/* Header Section */}
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto text-left">

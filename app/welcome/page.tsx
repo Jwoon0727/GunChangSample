@@ -156,10 +156,7 @@ function MaterialsPageContent() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const isScrollingRef = useRef(false)
 
-  // 무조건 welcome 페이지로 리다이렉트
-  useEffect(() => {
-    router.replace("/welcome")
-  }, [router])
+
 
   // URL 파라미터에서 인덱스 복원
   useEffect(() => {

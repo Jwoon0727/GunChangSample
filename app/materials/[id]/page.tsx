@@ -179,17 +179,19 @@ export default function MaterialDetailPage() {
 
   return (
     <main className="min-h-screen relative" style={{ 
-      touchAction: 'auto',
+      touchAction: 'manipulation',
       userSelect: 'auto',
       WebkitTouchCallout: 'default',
       WebkitUserSelect: 'auto',
       KhtmlUserSelect: 'auto',
       MozUserSelect: 'auto',
       msUserSelect: 'text' as any,
-      WebkitTapHighlightColor: 'rgba(0,0,0,0.1)'
-    }}>
+      WebkitTapHighlightColor: 'rgba(0,0,0,0.1)',
+      WebkitUserZoom: 'auto' as any,
+      zoom: 'auto'
+    } as React.CSSProperties}>
       {/* Full-screen background image with Next.js Image optimization */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0" style={{ touchAction: 'manipulation' }}>
         <Image
           src={material.image}
           alt={material.name}

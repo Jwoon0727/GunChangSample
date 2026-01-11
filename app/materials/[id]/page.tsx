@@ -60,7 +60,7 @@ const materials = [
   {
     id: 8,
     category: "Stone",
-    name: "Marble White",
+    name: "Natural Stone",
     image: "/icons/2-3NS.jpg",
     initial: "NS",
   },

@@ -39,16 +39,28 @@ export default function Home() {
       {/* Header Section */}
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto text-left">
-          <h1 
-            className="text-gray-800 -mb-1"
-            style={{ 
-              fontFamily: 'var(--font-dm-serif-text)',
-              fontSize: '32px',
-              fontWeight: '400'
-            }}
-          >
-            MFB
-          </h1>
+          <div className="flex items-baseline gap-0.5 -mb-1">
+            <h1 
+              className="text-gray-800"
+              style={{ 
+                fontFamily: 'var(--font-dm-serif-text)',
+                fontSize: '32px',
+                fontWeight: '400'
+              }}
+            >
+              MFB
+            </h1>
+            <p 
+              className="text-gray-600"
+              style={{ 
+                fontFamily: 'var(--font-dm-serif-text)',
+                fontSize: '16px',
+                fontWeight: '400'
+              }}
+            >
+              (Melamin Faced Board)
+            </p>
+          </div>
           <p 
             className="text-gray-800 mb-12"
             style={{ 
@@ -135,27 +147,41 @@ export default function Home() {
 <br/>
           <div className="container mx-auto px-2">
           <div className="container mx-auto pl-0 pr-2 py-4 md:py-6">
-          <div className="max-w-4xl mx-auto">
-    <h1 
-            className="text-gray-800 -mb-1"
-            style={{ 
-              fontFamily: 'var(--font-dm-serif-text)',
-              fontSize: '32px',
-              fontWeight: '400'
-            }}
-          >
-            MFB
-          </h1>
-          <p 
-            className="text-gray-800 mb--10"
-            style={{ 
-              fontFamily: 'var(--font-dm-serif-text)',
-              fontSize: '19px',
-              fontWeight: '400'
-            }}
-          >
-            ADVANTAGES
-          </p>
+         <div className="max-w-4xl mx-auto">
+           <div className="flex items-baseline gap-0.5 -mb-1">
+             <h1 
+               className="text-gray-800"
+               style={{ 
+                 fontFamily: 'var(--font-dm-serif-text)',
+                 fontSize: '32px',
+                 fontWeight: '400'
+               }}
+             >
+               MFB
+             </h1>
+             
+             <p 
+               className="text-gray-600"
+               style={{ 
+                 fontFamily: 'var(--font-dm-serif-text)',
+                 fontSize: '16px',
+                 fontWeight: '400'
+               }}
+             >
+               (Melamin Faced Board)
+             </p>
+           </div>
+         
+           <p 
+             className="text-gray-800 mb--10"
+             style={{ 
+               fontFamily: 'var(--font-dm-serif-text)',
+               fontSize: '19px',
+               fontWeight: '400'
+             }}
+           >
+             ADVANTAGES
+           </p>
     </div>
   </div>
 </div>

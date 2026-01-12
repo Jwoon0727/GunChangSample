@@ -129,11 +129,11 @@ const materials = [
   {
     id: 14,
     category: "Fantasy",
-    name: "Soft Embossing",
+    name: "Super Matt",
     image: "/icons/5-2_ST.jpg",
-    initial: "/icons/ST.svg",
-    initialWidth: 85,
-    initialHeight: 150,
+    initial: "/icons/SM3.png",
+    initialWidth: 70,
+    initialHeight: 140,
   },
   {
     id: 15,
@@ -143,6 +143,24 @@ const materials = [
     initial: "/icons/PM.svg",
     initialWidth: 80,
     initialHeight: 150,
+  },
+  {
+    id: 16,
+    category: "Wood",
+    name: "Lined Wood",
+    image: "/icons/LT12.jpg",
+    initial: "/icons/LT.png",
+    initialWidth: 60,
+    initialHeight: 130,
+  },
+  {
+    id: 17,
+    category: "Metal",
+    name: "Titanium",
+    image: "/icons/4-2_T.jpg",
+    initial: "/icons/TT.png",
+    initialWidth: 55,
+    initialHeight: 90,
   },
 ]
 
@@ -267,7 +285,7 @@ function MaterialsPageContent() {
       <div className="container mx-auto pl-4 py-6 md:py-10">
         {/* Header */}
        {/* Header */}
-<div className="flex items-center justify-between mt--3 mb-6 md:mt-10 md:mb-8">
+<div className="flex items-baseline gap-0.5 mt--3 mb-6 md:mt-10 md:mb-8">
   <h1 
     className="text-gray-800"
     style={{ 
@@ -278,6 +296,16 @@ function MaterialsPageContent() {
   >
     3D MFB
   </h1>
+  <p 
+    className="text-gray-600"
+    style={{ 
+      fontFamily: 'var(--font-dm-serif-text)',
+      fontSize: '16px',
+      fontWeight: '400'
+    }}
+  >
+    (Melamin Faced Board)
+  </p>
 </div>
 
         {/* Category Filter Buttons */}

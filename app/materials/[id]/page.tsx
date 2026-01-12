@@ -25,7 +25,7 @@ const materials = [
   {
     id: 3,
     category: "Wood",
-    name: "Lined Wood",
+    name: "Linear Grain",
     image: "/icons/1-3L.jpg",
     initial: "L",
   },
@@ -102,9 +102,9 @@ const materials = [
   {
     id: 14,
     category: "Fantasy",
-    name: "Soft Embossing",
+    name: "Super Matt",
     image: "/icons/5-2ST.jpg",
-    initial: "ST",
+    initial: "SM",
   },
   {
     id: 15,
@@ -112,6 +112,20 @@ const materials = [
     name: "Prime Matt",
     image: "/icons/5-3PM.jpg",
     initial: "PM",
+  },
+  {
+    id: 16,
+    category: "Wood",
+    name: "Lined Wood",
+    image: "/icons/1-6LT1.jpg",
+    initial: "LT",
+  },
+  {
+    id: 17,
+    category: "Metal",
+    name: "Technical Grid",
+    image: "/icons/4-2T11.jpg",
+    initial: "T",
   },
 ]
 

@@ -297,7 +297,7 @@ function MaterialsPageContent() {
     3D MFB
   </h1>
   <p 
-    className="text-gray-600"
+    className="text-gray-800"
     style={{ 
       fontFamily: 'var(--font-dm-serif-text)',
       fontSize: '16px',

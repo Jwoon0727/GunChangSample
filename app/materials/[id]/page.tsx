@@ -116,7 +116,7 @@ const materials = [
   {
     id: 16,
     category: "Wood",
-    name: "Lined Wood",
+    name: "Linear Timber",
     image: "/icons/1-6LT1.jpg",
     initial: "LT",
   },

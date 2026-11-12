@@ -21,7 +21,7 @@ export default function HomePage() {
     >
       <div className="relative flex items-center justify-center">
         <Image
-          src="/icons/mainicon.png"
+          src="/icons/mainload.png"
           alt="MFB"
           width={200}
           height={200}

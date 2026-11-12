@@ -86,7 +86,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex-1 text-left mt-7">
-                <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ fontFamily: 'var(--font-pragati-narrow)' }}>STEP 1</h2>
+                <h2 className="text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ fontFamily: 'var(--font-pragati-narrow)' }}>STEP 11</h2>
                 <p className="text-base text-gray-700 leading-relaxed">데코페이퍼를 멜라민수지에 <br/>함침 → LPM 시트 제작</p>
               </div>
             </div>
